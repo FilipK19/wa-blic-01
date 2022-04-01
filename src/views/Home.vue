@@ -2,7 +2,8 @@
   <div class="home">
     <ul>
     <li v-for="item in books" v-bind:key="item.url">
-      Ime: <router-link :to=" '/bookDetails/' + item.name"> {{ item.name }}</router-link> <br>
+      {{booknumber = Number(item.url.split("/").slice(-1)[0])}}
+      Ime: <router-link :to=" '/bookDetails/' + booknumber"> {{ item.name }}</router-link> <br>
       Autor: {{item.authors}} <br>
       Izdano: {{item.released}} <br> <br>
     </li>
@@ -17,6 +18,7 @@
 
 export default {
   name: 'HomeView',
+  props: ["booknumber"],
   data: function () {
     return {
       books: [],
@@ -24,7 +26,7 @@ export default {
   },
   async mounted() {
     let rezultat = await fetch(
-      'http://ntankovic.unipu.hr:8000/books.json'
+      'https://www.anapioficeandfire.com/api/books'
     );
     let podaci = await rezultat.json();
 
