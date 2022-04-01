@@ -3,7 +3,7 @@
     <h1>This is an about page</h1>
     <ul>
     <li v-for="item in books" v-bind:key="item.url">
-      {{booknumber}}
+      {{item}}
     </li>
     </ul>
   </div>
@@ -21,6 +21,7 @@ export default {
     return {
       books: [],
       bookdetails: [],
+      
     }
   },
 created: async function() {
@@ -29,14 +30,5 @@ created: async function() {
     let podaci = await rezultat.json();
     this.books = podaci
 },
-
-
-created2: async function() {
-    let rezultat2 = await fetch(
-    )
-    let podaci2 = await rezultat2.json();
-    this.bookdetails = podaci2
-}
-
 }
 </script>
